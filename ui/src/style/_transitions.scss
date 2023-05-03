@@ -1,0 +1,22 @@
+.opacity-enter-active,
+.opacity-leave-active {
+  transition: opacity 0.15s ease;
+}
+
+.opacity-enter-from,
+.opacity-leave-to {
+  opacity: 0;
+}
+
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.15s ease;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-right-enter-from,
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
+}

@@ -1,13 +1,13 @@
 <template>
   <div
-      class="alert px-5 py-5 flex flex-row gap-5 items-center w-96 shadow-lg select-none pointer-events-auto"
+      class="pointer-events-auto flex w-96 select-none flex-row items-center gap-5 px-5 py-5 shadow-lg alert"
       v-bind:data-type="alert.type"
       v-on:mouseenter="stopTimer"
       v-on:mouseleave="startTimer"
   >
-    <i class="text-lg pr-4 border-r border-white" v-bind:class="{[`ri-${icon}-line`]: true}"></i>
-    <p class="text-xs flex-grow">{{ alert.message }}</p>
-    <i class="ri-close-line text-gray-500 cursor-pointer" @click="close"></i>
+    <i class="border-r border-white pr-4 text-lg" v-bind:class="{[`ri-${icon}-line`]: true}"></i>
+    <p class="flex-grow text-xs">{{ alert.message }}</p>
+    <i class="cursor-pointer text-gray-500 ri-close-line" @click="close"></i>
   </div>
 </template>
 
@@ -95,7 +95,7 @@ div.alert {
     @apply bg-red-200;
 
     i:not(.ri-close-line) {
-      @apply text-red-600 animate-pulse ;
+      @apply animate-pulse text-red-600;
     }
   }
 }

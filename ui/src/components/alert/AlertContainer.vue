@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4 fixed bottom-5 w-96 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
+  <div class="pointer-events-none fixed bottom-5 left-1/2 z-20 flex w-96 -translate-x-1/2 flex-col gap-4">
     <transition-group name="list">
       <Alert v-for="alert in alertsStore.alerts" :key="alert.id" :alert="alert"/>
     </transition-group>

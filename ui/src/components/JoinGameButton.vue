@@ -1,42 +1,44 @@
 <template>
-  <Button class="join relative min-w-fit"
+  <Button class="relative min-w-fit join"
           v-on:click="openButton(true)"
           v-on:keydown.enter="openButton(false)"
           v-on:keydown.tab.prevent
           v-bind:data-opened="opened"
           v-bind:data-step="currentStep"
+          v-bind:loading="isLoading"
   >
-    <div class="flex flex-row items-center justify-between w-full h-full overflow-hidden ml-4 pr-4 py-2 relative">
+    <div class="relative ml-4 flex h-full w-full flex-row items-center justify-between overflow-hidden py-2 pr-4">
       <span v-bind:class="{[`opacity-0`]: opened}">Join a game</span>
-      <div class="field-wrapper w-full w-24 flex flex-col justify-center gap-1 my-2 absolute" data-field-name="code"
+      <div class="absolute my-2 flex w-24 w-full flex-col justify-center gap-1 field-wrapper" data-field-name="code"
            v-if="opened">
-        <div class="flex gap-2 items-center">
-          <i class="ri-hashtag opacity-50 text-sm"></i>
+        <div class="flex items-center gap-2">
+          <i class="text-sm opacity-50 ri-hashtag"></i>
           <input ref="codeInput" placeholder="Code" type="tel" class="w-full font-normal" v-model="code" minlength="4"
-                 maxlength="4" v-bind:disabled="isLoading"/>
+                 maxlength="4" v-bind:disabled="isLoading"
+          />
         </div>
       </div>
-      <div class="field-wrapper w-full w-24 flex flex-col justify-center gap-1 my-2 absolute" data-field-name="password"
+      <div class="absolute my-2 flex w-24 w-full flex-col justify-center gap-1 field-wrapper" data-field-name="password"
            v-if="opened">
-        <div class="flex gap-2 items-center">
-          <i class="ri-lock-line opacity-50 text-sm"></i>
+        <div class="flex items-center gap-2">
+          <i class="text-sm opacity-50 ri-lock-line"></i>
           <input ref="passwordInput" placeholder="Password" type="password" class="w-full font-normal"
                  v-model="password" minlength="1" v-bind:disabled="isLoading"/>
         </div>
       </div>
-      <div class="field-wrapper w-full w-24 flex flex-col justify-center gap-1 my-2 absolute" data-field-name="username"
+      <div class="absolute my-2 flex w-24 w-full flex-col justify-center gap-1 field-wrapper" data-field-name="username"
            v-if="opened">
-        <div class="flex gap-2 items-center">
-          <i class="ri-user-line opacity-50 text-sm"></i>
+        <div class="flex items-center gap-2">
+          <i class="text-sm opacity-50 ri-user-line"></i>
           <input ref="usernameInput" placeholder="Username" class="w-full font-normal"
                  v-model="username" minlength="2" maxlength="10" v-bind:disabled="isLoading"/>
         </div>
       </div>
     </div>
-    <span class="w-3.5 mr-4" v-if="opened"></span>
-    <div class="icon mr-4" v-bind:data-valid="isValid" @click="openButton(false)">
+    <span class="mr-4 w-3.5" v-if="opened"></span>
+    <div class="mr-4 icon" v-bind:data-valid="isValid" @click="openButton(false)">
       <i class="ri-arrow-right-line" v-if="!isLoading"></i>
-      <i class="ri-loader-4-line animate-spin" v-if="isLoading"></i>
+      <i class="animate-spin ri-loader-4-line" v-if="isLoading"></i>
     </div>
   </Button>
 </template>
@@ -132,7 +134,6 @@ async function tryJoin() {
 
   setTimeout(() => codeInput.value!.focus(), 150)
 }
-
 </script>
 
 <style scoped lang="scss">

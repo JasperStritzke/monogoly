@@ -12,6 +12,9 @@ type currencies struct {
 	CAD        string
 	NOK        string
 	DKK        string
+	YEN        string
+	INR        string
+	BTC        string
 	Currencies map[string]string
 }
 
@@ -35,6 +38,9 @@ var Currency = currencies{
 	CAD: "$",
 	NOK: "kr",
 	DKK: "kr",
+	YEN: "¥",
+	INR: "₹",
+	BTC: "₿",
 }
 
 func init() {

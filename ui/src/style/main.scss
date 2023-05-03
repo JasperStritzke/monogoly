@@ -2,9 +2,17 @@
 @tailwind component;
 @tailwind utilities;
 
+@import "./_transitions.scss";
+
 html,
 body,
 #app {
     width: 100%;
     height: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+    margin: 0;
 }

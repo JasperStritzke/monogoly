@@ -7,7 +7,6 @@ import (
 	"monogoly/apis/controllers"
 	"monogoly/apis/middlewares"
 	"monogoly/apis/services"
-	"monogoly/util"
 	"net/http"
 	"strings"
 )
@@ -26,7 +25,6 @@ func InitApi() *gin.Engine {
 
 	api := e.Group("/api")
 	api.GET("/status", status)
-	api.GET("/currencies", currencies)
 
 	//game routes
 	gameService := services.NewGameService()
@@ -43,8 +41,4 @@ func InitApi() *gin.Engine {
 
 func status(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Im fine. Y" + strings.Repeat("E", rand.Intn(8)+1) + "T"})
-}
-
-func currencies(c *gin.Context) {
-	c.JSON(http.StatusOK, util.Currency.Currencies)
 }

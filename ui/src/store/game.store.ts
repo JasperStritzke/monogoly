@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
-import {Currency} from "../service/api.service";
-import axios, {AxiosError} from "axios";
+import axios from "axios";
 import useAlertStore from "./alert.store";
+import {Currency} from "../util/currency";
 
 export interface GameStore {
     gameId: string,
@@ -45,6 +45,23 @@ const useGameStore = defineStore("game", {
                     useAlertStore().dispatchError((error.response?.data as any).message)
                     return undefined
                 })
+        },
+        async createGame(
+            {
+                name,
+                currency,
+                amountGo,
+                initialBalance,
+                password
+            }: { name: string, currency: Currency, amountGo: number, initialBalance: number, password: string }
+        ) {
+            return axios.post("/game/create", {currency: currency.code, amountGo, initialBalance, password})
+                .then(({data: {gameId, password}}: { data: { gameId: string, password: string } }) => {
+                    useAlertStore().dispatchSuccess(`Successfully created game ${gameId}.`)
+
+                    this.joinGame(name, gameId, password).catch()
+                })
+                .catch(error => useAlertStore().dispatchError((error.response?.data as any).message))
         }
     },
     getters: {

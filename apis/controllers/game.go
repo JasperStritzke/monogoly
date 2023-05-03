@@ -35,6 +35,21 @@ func (g GameController) Create(c *gin.Context) {
 		return
 	}
 
+	if body.InitialBalance < 1 {
+		_ = c.AbortWithError(http.StatusBadRequest, errors.New("initial balance cant be less than 1"))
+		return
+	}
+
+	if body.AmountGo < 1 {
+		_ = c.AbortWithError(http.StatusBadRequest, errors.New("amount over go cant be less than 1"))
+		return
+	}
+
+	if len(body.Password) < 1 {
+		_ = c.AbortWithError(http.StatusBadRequest, errors.New("password must be at least 1 char"))
+		return
+	}
+
 	game := g.gameService.RequestGameStart(body)
 
 	c.JSON(http.StatusOK, forms.GameCreateResponse{

@@ -128,8 +128,6 @@ func (g *GameService) joinGame(entry *joinQueueEntry) {
 	}
 
 	game.Players = append(game.Players, entry.Player)
-
-	log.Println(entry.Player.Name, "joined the game", entry.GameId)
 }
 
 func (g *GameService) RequestGameJoin(request forms.GameJoin) (*models.Game, *models.Player, error) {
